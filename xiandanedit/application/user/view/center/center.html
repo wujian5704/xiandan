@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--向下兼容IE8的版本-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--设置页面的宽度和访问设备的宽度一致，并且禁止缩放，接近原生的效果-->
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <title>咸蛋网-个人中心</title>
+    <link rel="shortcut icon" href="/TP5/public/favicon.ico"/>
+    <!--bootstrap css样式插件-->
+    <link rel="stylesheet" href="__CSS__/bootstrap.min.css">
+    <!--个人css代码-->
+    <link rel="stylesheet" href="__CSS__/center.css">
+    <!--vue js插件 -->
+    <script type="text/javascript" src="__JS__/vue.min.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+    <!--头部菜单-->
+    <div class="head">
+        <nav class="navbar navbar-blue navbar-fixed-top">
+            <div class="container">
+                <!--以下div 只在移动端显示-->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNav" aria-expanded="false">
+                        <span class="text-warning">点我展开</span>
+                        <span class="caret"></span>
+                    </button>
+                    <a href="#">
+                        <img class="img-responsive" src="https://ws1.sinaimg.cn/large/93ab07cbgy1fpnyupdxsuj206e02ujrc.jpg" width="140" height="48">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNav">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a href="#wjx_home">首页<span class="sr-only">(current)</span></a></li>
+                        <li class="dropdown">
+                            <a href="#" id="navbarDrop1" class="dropdown-toggle" data-toggle="dropdown">账号设置
+                                <b class="caret"></b>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDrop1">
+                                <ul class="menu-left">
+                                    <li class="menu-option"><a href="">手机绑定</a></li>
+                                    <li class="menu-option"><a href="">邮箱绑定</a></li>
+                                    <li class="menu-option"><a href="">修改资料</a></li>
+                                </ul>
+                                <ul class="menu-right">
+                                    <li class="menu-option"><a href="">登陆密码</a></li>
+                                    <li class="menu-option"><a href="">支付密码</a></li>
+                                    <li class="menu-option"><a href="">银行卡管理</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">用户名</a></li>
+                        <li><a href="#">退出</a></li>
+                        <li class="dropdown">
+                            <a href="#" id="navbarDrop2" class="dropdown-toggle" data-toggle="dropdown">网站导航<b class="caret"></b></a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDrop2">
+                                <ul>
+                                    <li><a href="">1</a></li>
+                                    <li><a href="">2</a></li>
+                                    <li><a href="">3</a></li>
+                                    <li><a href="">4</a></li>
+                                    <li><a href="">5</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!--中间部分-->
+    <div class="body" id="app">
+        <div class="container">
+            <div class="row">
+                <!--路径导航-->
+                <div class="col-sm-3">
+                    <ol class="breadcrumb">
+                        <li><a href="#">首页</a></li>
+                        <li class="active"><router-link to="/userInfo">个人中心</router-link></li>
+                    </ol>
+                </div>
+                <div class="col-sm-3"></div>
+                <!--搜索-->
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="请输入搜索的二手宝贝">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-2 free-publish">
+                    <a href='' class="btn btn-blue">免费发布</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2 body-left">
+                    <dl>
+                        <dt>
+                            <span>我的咸蛋</span>
+                            <span class="caret"></span>
+                        </dt>
+                        <dd><router-link to="/message">消息中心</router-link></dd>
+                        <dd><router-link to="/wallet">我的钱包</router-link></dd>
+                        <dd><router-link to="/myEva">我的评价</router-link></dd>
+                        <dd><router-link to="/recycled">回收站</router-link></dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span>我是买家</span>
+                            <span class="caret"></span>
+                        </dt>
+                        <dd><router-link to="/buygoods">已买到的商品</router-link></dd>
+                        <dd><router-link to="/auction">我参与的拍卖</router-link></dd>
+                        <dd><router-link to="/collectall">我的收藏</router-link></dd>
+                        <dd><router-link to="/history">浏览历史</router-link></dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span>我是卖家</span>
+                            <span class="caret"></span>
+                        </dt>
+                        <dd><router-link to="/publish">我发布的商品</router-link></dd>
+                        <dd><router-link to="/salegoods">已卖出的商品</router-link></dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            <span>个人设置</span>
+                            <span class="caret"></span>
+                        </dt>
+                        <dd><router-link to="/address">收货地址管理</router-link></dd>
+                        <dd><router-link to="/personal">个人信息设置</router-link></dd>
+                    </dl>
+                </div>
+                <router-view></router-view>
+            </div>
+        </div>
+    </div>
+    <!--页脚-->
+    <div class="foot">
+        <div class="container">
+            <div class="row text-center foot-nav">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-1">关于咸蛋</div>
+                <div class="col-sm-1">联系我们</div>
+                <div class="col-sm-1">友情链接</div>
+                <div class="col-sm-2">用户服务协议</div>
+                <div class="col-sm-1">隐私声明</div>
+            </div>
+        </div>
+        <div class="copyright text-center">
+            <p>© 2018 www.xiandan.com 卓跃教育HF1708班（咸蛋网）</p>
+            <p>版权所有 闽ICP证1708005号</p>
+        </div>
+    </div>
+</body>
+<!--bootstrap 基于jQuery插件-->
+<script src="__JS__/jquery.js"></script>
+<!--bootstrap js插件-->
+<script src="__JS__/bootstrap.min.js"></script>
+<script type="text/javascript" src="__JS__/center.js"></script>
+</html>

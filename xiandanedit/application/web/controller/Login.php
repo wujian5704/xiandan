@@ -13,12 +13,11 @@ class Login extends Controller
     public function login()
     {
 
-        $loginUrl=url('web/home/home');
+        $loginUrl=url('index/index/index');
         $this->assign('login_url',$loginUrl);
 
         $register=url('web/register/register');
         $this->assign('register_url',$register);
-
         return $this->fetch();
     }
 //    public function log(){
@@ -191,8 +190,8 @@ class Login extends Controller
 
     /*处理登录提交*/
     public function doLogin(){
-    /*接收页面传递（post）的值*/
-    /*检查数据是否有这个变量是否提交*/
+        /*接收页面传递（post）的值*/
+        /*检查数据是否有这个变量是否提交*/
         $username=Request::instance()->has('id','post');
         if($username==true){
             $id=input('post.id');      //用户id
@@ -201,7 +200,7 @@ class Login extends Controller
         }
 
         $where=[
-            'uid'=>$id,
+            'uname'=>$id,
             'upsd'=>md5($pwd)
         ];
 
@@ -218,7 +217,7 @@ class Login extends Controller
             return $returnJson;
         }
 
-         /*账号防注入*/
+        /*账号防注入*/
         if(!preg_match("/^[0-9]*$/",$id,$matches)){
             $returnJson=[
                 'code'=>10002,
@@ -238,30 +237,30 @@ class Login extends Controller
             return $returnJson;
         }
 
-    /*验证码校验*/
-       if(!captcha_check($code)){
-           $returnJson=[
-               'code'=>10004,
-               'msg'=>'验证码错误，请重新输入',
-               'data'=>[]
-           ];
-           return $returnJson;
-       }
+        /*验证码校验*/
+        if(!captcha_check($code)){
+            $returnJson=[
+                'code'=>10004,
+                'msg'=>'验证码错误，请重新输入',
+                'data'=>[]
+            ];
+            return $returnJson;
+        }
 
-       
-       if(!empty($userInfo)){
-           foreach ($userInfo as $key=>$val){
-               Session::set('userId',$val['uid']);             /*ID*/
-               Session::set('username',$val['nickname']);     /*用户名字*/
-               Session::set('userimg',$val['uimg']);           /*头像*/
-           }
 
-           $returnJson=[
-               'code'=>10000,
-               'msg'=>'登录成功',
-               'data'=>[]
-           ];
-           return $returnJson;
-       }
+        if(!empty($userInfo)){
+            foreach ($userInfo as $key=>$val){
+                Session::set('userId',$val['uid']);             /*ID*/
+                Session::set('username',$val['nickname']);     /*用户名字*/
+                Session::set('userimg',$val['uimg']);           /*头像*/
+            }
+
+            $returnJson=[
+                'code'=>10000,
+                'msg'=>'登录成功',
+                'data'=>[]
+            ];
+            return $returnJson;
+        }
     }
 }

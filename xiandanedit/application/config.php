@@ -237,10 +237,11 @@ return [
         'list_rows' => 15,
     ],
     //验证码配置
-    'Captcha'       =>[
+    'captcha'       =>[
         'length'    =>  '4',
         'imageH'    =>  '50',
-        'imageW'    =>  '200'
+        'imageW'    =>  '200',
+        'reset'     =>true,
     ],
     //提示文字配置
     "LoginMsg"      => [
