@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+    <link href="__STATIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        ul li{
+            list-style-type: none;
+        }
+        #staff_list{
+            width:70%;
+            border-collapse: collapse;
+            border-color: #aaaaaa;
+        }
+        #staff_list tr:nth-child(1) th{
+            text-align: center;
+            height:40px;
+        }
+        #staff_list tr td{
+            height: 40px;
+            color: #444444;
+        }
+        #staff_list tr td:nth-last-child(1) button{
+            margin-right: 10px;
+        }
+        #staff_list tr:nth-child(2n)
+        {
+            background-color: #f5f5f5;
+        }
+        .modal-backdrop {
+            filter: alpha(opacity=0)!important;
+            opacity: 0!important;
+        }
+        #upstaff_info,#add_staff{
+            height: 200px;
+        }
+        #upstaff_info ul li,#add_staff ul li{
+            margin: 20px;
+        }
+        #upstaff_info ul li input,#add_staff ul li input{
+            width:220px;
+            margin-left: 5px;
+            padding-left: 3px;
+            height: 30px;
+            border:1px solid #aaaaaa;
+            border-radius: 5px;
+            outline: none;
+        }
+        #upstaff_info ul li select ,#add_staff ul li select{
+            width:220px;
+            height: 30px;
+            border-radius: 5px;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+<div id="myapp">
+    <h1 style="color: #888888;">员工管理</h1>
+    <button style="margin:10px 10px 10px 0;" type="button" class="btn btn-info" data-toggle="modal" data-target="#addStaff">添加员工</button>
+    <button style="margin:10px 10px 10px 0;" type="button" onclick="deblock()" class="btn btn-info">解锁</button>
+    <button style="margin:10px 10px 10px 0;" type="button" onclick="lock()" class="btn btn-info">锁定</button>
+    <div>
+       <table id="staff_list" class="text-center" border="1">
+           <tr>
+               <th><input id="all_staff" type="checkbox"></th>
+               <th>账户</th>
+               <th>用户名称</th>
+               <th>用户角色</th>
+               <th>用户状态</th>
+               <th>操作</th>
+           </tr>
+           {volist name="$staffList" id="val" key="key"}
+           <tr>
+               <td>
+                   {if condition="$val['rname'] neq '超级管理员'"}
+                      <input class='staff_box' type="checkbox" id="{$val.sid}">
+                   {/if}
+               </td>
+               <td>{$val['sid']}</td>
+               <td>{$val['sname']}</td>
+               <td>{$val['rname']}</td>
+               <td>{$val['state']}</td>
+               <td>
+               {if condition="$val['rname'] neq '超级管理员'"}
+                     <button type="button" class="btn btn-info btn-sm" onclick="deleStaff('{$val.sid}','{$val.roleid}')">删除</button>
+                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" @click="getStaffInfo('{$val.sid}')">修改</button>
+                     <button type="button" class="btn btn-info btn-sm" onclick="resetPwd('{$val.sid}')">重置密码</button>
+               {/if}
+               </td>
+           </tr>
+           {/volist}
+       </table>
+    </div>
+    <!-- 修改员工模态框 -->
+    <div class="modal fade " id="myModal"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">修改员工信息</h4>
+                </div>
+                <div id="upstaff_info" class="modal-body" >
+                    <ul>
+                        <li><span>&nbsp;&nbsp;&nbsp;&nbsp;用户名：</span><span style="font-size: 18px">{{staffInfo.sid}}</span></li>
+                        <li><span >用户名称：</span><input id="nickname" type="text" :value="staffInfo.sname"></li>
+                        <li>
+                            <span>用户角色：</span>
+                            <select id="staff_role">
+                                <option  v-for="(val,key) in roleList" v-if="val.rid == staffInfo.roleid" selected  :value="val.rid">{{val.rname}}</option>
+                                <option  v-for="(val,key) in roleList" v-if="val.rid != staffInfo.roleid"  :value="val.rid">{{val.rname}}</option>
+                            </select>
+
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary"  @click="upStaff(staffInfo.sid)">修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--添加员工-->
+    <div class="modal fade" id="addStaff" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">添加员工</h4>
+                </div>
+                <div id="add_staff" class="modal-body">
+                    <div>
+                        <ul>
+                            <li>
+                                <span>&nbsp;&nbsp;&nbsp;&nbsp;用户名：</span><input id="newSname" type="text" maxlength="4" placeholder="请输入用户名（4位字母或数字）">
+                            </li>
+                            <li>
+                                <span >用户名称：</span><input id="newSnick" type="text" maxlength="8" placeholder="请输入用户名称">
+                            </li>
+                            <li>
+                                <span>用户角色：</span>
+                                <select id="newRole">
+                                    <option  v-for="(val,key) in roleList" :value="val.rid">{{val.rname}}</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" @click="addStaff()">保存</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+<!--分页-->
+<div style="position: absolute;top: 360px;left: 325px;">
+    {$staffList->render()}
+</div>
+</body>
+<script src="__JS__/jquery-3.2.1.js"></script>
+<script src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
+<script src="__JS__/vue.min.js"></script>
+<script>
+     var deleurl = "{:url('system/staffman/dele_staff')}";
+     var reseturl = "{:url('system/staffman/reset_pwd')}";
+     var useurl = "{:url('system/staffman/deblock')}";
+     var lockurl = "{:url('system/staffman/lock')}";
+     var getdataurl = "{:url('system/staffman/get_staff')}";
+     var upstaffurl = "{:url('system/staffman/up_staff')}";
+     var getroleurl = "{:url('system/staffman/get_rolelist')}";
+     var addstaffurl = "{:url('system/staffman/add_staff')}";
+</script>
+<script src="__JS__/showstaff.js"></script>
+</html>
