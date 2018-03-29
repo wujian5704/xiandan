@@ -22,26 +22,26 @@
     <script src="__JS__/jquery-2.1.4.js"></script>
 
     <!--<script>-->
-    <!--var app = angular.module("myForm", []);-->
-    <!--/*指令创建*/-->
-    <!--app.directive('equals',function(){-->
-    <!--return{-->
-    <!--require:'ngModel',-->
-    <!--link:function(scope,elm,attrs,ngModelCtrl){-->
+        <!--var app = angular.module("myForm", []);-->
+        <!--/*指令创建*/-->
+        <!--app.directive('equals',function(){-->
+            <!--return{-->
+                <!--require:'ngModel',-->
+                <!--link:function(scope,elm,attrs,ngModelCtrl){-->
 
-    <!--function validateEqual(myValue){-->
-    <!--var valid = (myValue === scope.$eval(attrs.equals));-->
-    <!--ngModelCtrl.$setValidity('equal',valid);-->
-    <!--return valid ? myValue : undefined;-->
-    <!--}-->
-    <!--ngModelCtrl.$parsers.push(validateEqual);-->
-    <!--ngModelCtrl.$formatters.push(validateEqual);-->
-    <!--scope.$watch(attrs.equals,function(){-->
-    <!--ngModelCtrl.$setViewValue(ngModelCtrl.$viewValue);-->
-    <!--})-->
-    <!--}-->
-    <!--}-->
-    <!--});-->
+                    <!--function validateEqual(myValue){-->
+                        <!--var valid = (myValue === scope.$eval(attrs.equals));-->
+                        <!--ngModelCtrl.$setValidity('equal',valid);-->
+                        <!--return valid ? myValue : undefined;-->
+                    <!--}-->
+                    <!--ngModelCtrl.$parsers.push(validateEqual);-->
+                    <!--ngModelCtrl.$formatters.push(validateEqual);-->
+                    <!--scope.$watch(attrs.equals,function(){-->
+                        <!--ngModelCtrl.$setViewValue(ngModelCtrl.$viewValue);-->
+                    <!--})-->
+                <!--}-->
+            <!--}-->
+        <!--});-->
     <!--</script>-->
 </head>
 <!-- //Head -->
@@ -49,7 +49,7 @@
 <!-- Body -->
 <body ng-app="">
 
-<img src="__STATIC__/img/logo.png">
+<img src="__STATIC__/image/logo.png">
 
 <div class="container w3layouts agileits">
     <div class="login w3layouts agileits" style="border: none">
@@ -72,18 +72,19 @@
     <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
     <div class="register w3layouts agileits">
         <h2>注 册</h2>
+
         <form id="formRegister" name="formRegister" action="{$registerUrl}" method="post">
             <div>
-                <input type="text" class="userID" Name="userID" placeholder="用户名" required ng-model="userIDs" ng-minlength="5" ng-maxlength="12" ng-blur="userID = true">
+                <input type="text" class="userID" Name="userID" placeholder="用户ID" required ng-model="userIDs" ng-minlength="5" ng-maxlength="12" ng-blur="userID = true">
                 <span ng-show="formRegister.userID.$error.required && userID" style="color:red">用户名不能为空</span>
                 <span ng-show="formRegister.userID.$error.maxlength"  style="color: red">请控制用户名长度</span>
                 <span ng-show="formRegister.userID.$error.minlength"  style="color: red">用户名必须大于5位</span>
             </div>
-            <!--<div>-->
-            <!--<input type="text" Name="username" placeholder="用户名" required ng-model="usernames" ng-maxlength="12" ng-blur="username = true">-->
-            <!--<span ng-show="formRegister.username.$error.required && username" style="color:red">用户名不能为空</span>-->
-            <!--<span ng-show="formRegister.username.$error.maxlength"  style="color: red">请控制用户名长度</span>-->
-            <!--</div>-->
+            <div>
+                <input type="text" Name="username" placeholder="用户名" required ng-model="usernames" ng-maxlength="12" ng-blur="username = true">
+                <span ng-show="formRegister.username.$error.required && username" style="color:red">用户名不能为空</span>
+                <span ng-show="formRegister.username.$error.maxlength"  style="color: red">请控制用户名长度</span>
+            </div>
             <div>
 
                 <input type="password" Name="userpsd" placeholder="密码" required ng-model="pwd" ng-maxlength="32"  ng-pattern='/^[A-Za-z0-9]+$/' ng-blur="userpsd = true">
@@ -111,7 +112,11 @@
 
             <div class="send-button w3layouts agileits">
                 <input type="submit" class="btn btn-primary btn-lg" ng-disabled="formRegister.$invalid ||  pwd != repwd" value="免费注册" ng-disabled="submit(userForm)"/>&nbsp;
-                <a  href="{$login_url}" style="color: rgba(10,10,10,0.77)">返回登录</a>
+                <p>
+                    <a  href="{$login_url}" style="color: rgba(10,10,10,0.77)">返回登录</a>
+                    <a href="{:url('index/index/index')}" style=""><span>返回首页</span></a>
+                </p>
+
             </div>
         </form>
         <div class="clear"></div>
@@ -137,7 +142,6 @@
 </script>
 <script>
     var LoginUrl='{:url("web/Login/login")}';
-
     $(".userID").blur(function(){
         var userID=$(".userID").val();
         $.ajax({
