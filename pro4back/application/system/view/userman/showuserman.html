@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+    <script src="__JS__/jquery-3.2.1.js"></script>
+    <link href="__STATIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        #staff_list{
+            width:70%;
+            border-collapse: collapse;
+            border-color: #999999;
+        }
+        #staff_list tr:nth-child(1) th{
+            text-align: center;
+            height:40px;
+        }
+        #staff_list tr td{
+            height: 40px;
+            color: #444444;
+        }
+        #staff_list tr td:nth-last-child(1) button{
+            margin-right: 10px;
+        }
+        #staff_list tr:nth-child(2n)
+        {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+<h1>用户管理</h1>
+<input style="width: 230px;height: 30px" type="text" id="keyword" placeholder="请输入用户账号">
+<button style="margin:10px 10px 10px 0;" type="button" class="btn btn-info" onclick="search()">搜索</button>
+<div>
+    <table id="staff_list" class="text-center" border="1">
+        <tr>
+            <th>用户账号</th>
+            <th>用户名称</th>
+            <th>注册时间</th>
+            <th>用户状态</th>
+            <th>操作</th>
+        </tr>
+        {volist name="$userList" id="v" key="k"}
+        <tr>
+            <td>{$v['uname']}</td>
+            <td>{$v['nickname']}</td>
+            <td>{$v['utime']}</td>
+            <td>{$v['ustate']}</td>
+            <td>
+                <button type="button" value="{$v['uname']}" class="btn btn-info btn-sm" onclick="unlock('{$v.uname}')">解锁</button>
+                <button type="button" value="{$v['uname']}" class="btn btn-info btn-sm" onclick="locking('{$v.uname}')">锁定</button>
+                <button type="button" value="{$v['uname']}" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" onclick="detailed('{$v.uname}')">详细信息</button>
+                <button type="button" value="{$v['uname']}" class="btn btn-info btn-sm" onclick="resetPwd('{$v.uname}')">重置密码</button>
+            </td>
+        </tr>
+        {/volist}
+    </table>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                    </button>
+                    <h4 class="modal-title detailedOne" id="myModalLabel">
+                        用户：
+                    </h4>
+                </div>
+                <div class="modal-body detailedTwo">
+                    <p>昵称：</p>
+                    <p>头像：</p>
+                    <p>性别：</p>
+                    <p>年龄：</p>
+                    <p>手机：</p>
+                    <p>邮箱：</p>
+                    <p>注册时间：</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                        关闭
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+</div>
+</body>
+<script src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
+<script>
+    var reseturl = "{:url('system/userman/modifyPwd')}";
+    var detailedurl="{:url('system/userman/detailed')}";
+    var searchurl="{:url('system/userman/search')}";
+    var unlockurl="{:url('system/userman/unlock')}";
+    var lockingurl="{:url('system/userman/locking')}";
+</script>
+<script src="__JS__/showuser.js"></script>
+</html>

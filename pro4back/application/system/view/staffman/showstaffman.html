@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+    <link href="__STATIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        #staff_list{
+            width:70%;
+            border-collapse: collapse;
+            border-color: #999999;
+        }
+        #staff_list tr:nth-child(1) th{
+            text-align: center;
+            height:40px;
+        }
+        #staff_list tr td{
+            height: 40px;
+            color: #444444;
+        }
+        #staff_list tr td:nth-last-child(1) button{
+            margin-right: 10px;
+        }
+        #staff_list tr:nth-child(2n)
+        {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <h1>员工管理</h1>
+    <button style="margin:10px 10px 10px 0;" type="button" class="btn btn-info">添加员工</button>
+    <button style="margin:10px 10px 10px 0;" type="button" class="btn btn-info">解锁</button>
+    <button style="margin:10px 10px 10px 0;" type="button" class="btn btn-info">锁定</button>
+    <div>
+       <table id="staff_list" class="text-center" border="1">
+           <tr>
+               <th> <input id="all_staff" type="checkbox"></th>
+               <th>账户</th>
+               <th>用户名称</th>
+               <th>用户角色</th>
+               <th>用户状态</th>
+               <th>操作</th>
+           </tr>
+           {volist name="$staffList" id="val" key="key"}
+           <tr>
+               <td>
+                   {if condition="$val['rname'] neq '超级管理员'"}
+                   <input class='staff_box' type="checkbox" >
+                   {/if}
+               </td>
+               <td>{$val['sid']}</td>
+               <td>{$val['sname']}</td>
+               <td>{$val['rname']}</td>
+               <td>{$val['state']}</td>
+               <td>
+               {if condition="$val['rname'] neq '超级管理员'"}
+                     <button type="button" class="btn btn-info btn-sm" onclick="deleStaff('{$val.sid}')">删除</button>
+                     <button type="button" class="btn btn-info btn-sm" onclick="upStaff('{$val.sid}')">修改</button>
+                     <button type="button" class="btn btn-info btn-sm" onclick="resetPwd('{$val.sid}')">重置密码</button>
+               {/if}
+               </td>
+           </tr>
+           {/volist}
+       </table>
+    </div>
+</body>
+<script src="__JS__/jquery-3.2.1.js"></script>
+<script src="__STATIC__/bootstrap/js/bootstrap.min.js"></script>
+<script>
+     var deleurl = "{:url('system/staffman/dele_staff')}";
+     var reseturl = "{:url('system/staffman/reset_pwd')}";
+</script>
+<script src="__JS__/showstaff.js"></script>
+</html>
