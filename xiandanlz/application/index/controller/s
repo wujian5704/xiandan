@@ -1,0 +1,46 @@
+商品种类表
+    id
+    classname
+商品品牌表
+    id
+    brandname
+    cid(外键，关联商品种类表)
+商品规格表
+    id
+    specname
+    bid(外键，关联商品品牌表)
+
+
+
+问卷表
+    id
+    title
+
+题目表
+    id
+    title
+    fid(外键，关联问卷表ID)
+
+选项表
+    id
+    title
+    fid(外键，关联题目表)
+
+
+地址表
+
+省份表
+    id
+    name
+
+城市表
+    id
+    name
+    cid(外键，关联省份表id)
+区域表
+    id
+    name
+    cid(外键，关联城市表id)
+
+
+
