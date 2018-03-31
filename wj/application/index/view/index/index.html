@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="__STATIC__/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__CSS__/index.css?llkja">
+    <!--个人css代码-->
+    <link rel="stylesheet" href="__CSS__/center.css">
+    <title>首页</title>
+</head>
+<body>
+
+<!--头部菜单-->
+<div class="head">
+    <nav class="navbar navbar-blue navbar-fixed-top" >
+        <div class="container">
+            <!--以下div 只在移动端显示-->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNav" aria-expanded="false">
+                    <span class="text-warning">点我展开</span>
+                    <span class="caret"></span>
+                </button>
+                <a href="#">
+                    <img class="img-responsive" src="https://ws1.sinaimg.cn/large/93ab07cbgy1fpnyupdxsuj206e02ujrc.jpg" width="140" height="48">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNav">
+                <ul class="nav navbar-nav navbar-left" style="font-size: 20px;">
+                    <li><a href="{:url('index/index/index')}">首页<span class="sr-only">(current)</span></a></li>
+                    <li><a href="{:url('index/auction/auction')}">拍卖场</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{:url('web/login/login')}">登录</a></li>
+                    <li><a href="{:url('web/login/login')}">注册</a></li>
+                    <li class="dropdown">
+                        <a href="#" id="navbarDrop2" class="dropdown-toggle" data-toggle="dropdown">网站导航<b class="caret"></b></a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDrop2">
+                            <ul>
+                                <li><a href="">1</a></li>
+                                <li><a href="">2</a></li>
+                                <li><a href="">3</a></li>
+                                <li><a href="">4</a></li>
+                                <li><a href="">5</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<!--轮播图-->
+<div class="container">
+    <div class="row">
+        <!--商品分类-->
+        <div class="col-lg-3" >
+            <ul class="list-group" id="com_type">
+                <li class="list-group-item">
+                        <span class="glyphicon glyphicon-piggy-bank"></span>
+                        <span>闲置数码</span>
+                        <span>手机相机</span>
+                        <span>手机相机</span>
+                        <span>手机相机</span>
+                </li>
+                <li class="list-group-item">
+                    <span class="glyphicon glyphicon-piggy-bank"></span>
+                    <span>闲置数码</span>
+                    <span>手机相机</span>
+                    <span>手机相机</span>
+                    <span>手机相机</span>
+                </li>
+                <li class="list-group-item">
+                    <span class="glyphicon glyphicon-piggy-bank"></span>
+                    <span>闲置数码</span>
+                    <span>手机相机</span>
+                    <span>手机相机</span>
+                    <span>手机相机</span>
+                </li>
+                <li class="list-group-item">
+                    <span class="glyphicon glyphicon-piggy-bank"></span>
+                    <span>闲置数码</span>
+                    <span>手机相机</span>
+                    <span>手机相机</span>
+                    <span>手机相机</span>
+                </li>
+                <li class="list-group-item">
+                    <span class="glyphicon glyphicon-piggy-bank"></span>
+                    <span>闲置数码</span>
+                    <span>手机相机</span>
+                    <span>手机相机</span>
+                    <span>手机相机</span>
+                </li>
+                <li class="list-group-item">
+                    <span class="glyphicon glyphicon-piggy-bank"></span>
+                    <span>闲置数码</span>
+                    <span>手机相机</span>
+                    <span>手机相机</span>
+                    <span>手机相机</span>
+                </li>
+            </ul>
+        </div>
+        <!--轮播-->
+        <div class="col-lg-6 banner" style="padding: 0;">
+            <div class="carousel slide" data-interval="3000" data-ride="carousel" id="carousel_one">
+                <div class="carousel-inner">
+                    <div class="item active"> <img src="https://desk-fd.zol-img.com.cn/t_s1920x1080c5/g5/M00/0F/07/ChMkJlauyluIZ1fXAAmHL8tu9YMAAH8swOZeSsACYdH142.jpg" class="img-responsive" alt=""></div>
+                    <div class="item"><img class="img-responsive" src="https://desk-fd.zol-img.com.cn/t_s1920x1080c5/g5/M00/0F/07/ChMkJlauyluIWSxIAAldhctGEyMAAH8swOjAHIACV2d349.jpg" alt=""></div>
+                    <div class="item"><img class="img-responsive" src="https://desk-fd.zol-img.com.cn/t_s1920x1080c5/g5/M00/0F/07/ChMkJlauyluIcxGTAAU55FQ4eNsAAH8swOtnKUABTn8816.jpg" alt=""></div>
+                </div>
+                <!--小圆点-->
+                <ol class="carousel-indicators">
+                    <li data-slide-to="0" class="active" data-target="carousel_one"></li>
+                    <li data-slide-to="1" data-target="carousel_one"></li>
+                    <li data-slide-to="2" data-target="carousel_one"></li>
+                </ol>
+                <!--箭头-->
+                <a style="z-index: 9999" href="#carousel_one" data-slide="prev" class="left carousel-control">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a style="z-index: 9999" href="#carousel_one"  class="right carousel-control" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </div>
+        <!--广告图-->
+        <div class="col-lg-3 advert" >
+            <img style="width: 100%;" src="http://pic2.sc.chinaz.com/Files/pic/pic9/201803/bpic6098_s.jpg" class="img-responsive" alt="">
+        </div>
+    </div>
+</div>
+<!--闲置商品回收-->
+<div class="container">
+    <div class="row">
+        <!--标题-->
+        <div class="col-sm-12 onediv">
+            <h2 class="goodh2" >
+                <strong>咸蛋回收</strong>
+                <span class="goodspan">高价、边界、安全、快速</span>
+                <a href="" class="goodha" >
+                    <span class="glyphicon glyphicon-chevron-right addmore" ></span>
+                </a>
+            </h2>
+        </div>
+        <!--商品展示-->
+        <div class="row">
+            <!--广告图-->
+            <div class="col-sm-3" >
+                <img class="img-responsive" src="https://ws1.sinaimg.cn/large/e6b6dee3gy1fpuqheq2m2j206o07gdgt.jpg" alt="">
+            </div>
+            <!--一个商品-->
+            {volist name ="goodsData" id="value" key='key' length="3"}
+                <div class="col-sm-3 onegood">
+                    <div class="onegoodsimg" style="background-image: url('{$value.gimg}')"></div>
+                    <div class="onetitle text-center">
+                        <strong>{$value.gname}</strong>
+
+                    </div>
+                    <p style="text-align: center;">咸蛋价：<span style="color: red;">￥<span>{$value.gprice}</span></span></p>
+                </div>
+            {/volist}
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6" style="background: #63c8c3;margin-bottom: 10px;">
+            <!--标题-->
+            <h2 class="goodh2">
+                <strong>咸蛋租赁</strong>
+                <span class="goodspan">随时随地想用就用</span>
+                <a href="" class="goodha" >
+                    <span class="glyphicon glyphicon-chevron-right addmore" ></span>
+                </a>
+            </h2>
+        </div>
+        <div class="col-sm-6">
+            <!--标题-->
+            <div class="col-sm-12" style="background: #8d9aff;margin-bottom: 10px;">
+                <h2 class="goodh2">
+                    <strong>咸蛋维修</strong>
+                    <span class="goodspan">资深工程师一对一服务</span>
+                    <a href="" class="goodha" >
+                        <span class="glyphicon glyphicon-chevron-right addmore" ></span>
+                    </a>
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!--咸蛋租赁-->
+        <div class="col-sm-6 padleft" >
+            <div class="col-sm-4 padleft">
+                <img src="https://ws1.sinaimg.cn/large/e6b6dee3gy1fpuszm73swj205k07s0u5.jpg" alt="">
+            </div>
+        </div>
+        <div class="col-sm-6 padleft">
+            <div class="col-sm-4">
+                <!--广告-->
+                <img src="https://ws1.sinaimg.cn/large/e6b6dee3gy1fpuszm73swj205k07s0u5.jpg" alt="">
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+<!--放回顶部-->
+<div class="text-center navbar-fixed-top float_foot back-top" id="float_right"  style="width: 35px;background: #000;left: 95%;top: 80% !important;">
+    <a class="back-to-top" href="#top">
+        <span class="glyphicon glyphicon-chevron-up" style="font-size: 30px;color: white;"></span>
+    </a>
+    <span id="severtalk" class="glyphicon glyphicon-exclamation-sign" style="font-size: 30px;color: white;border-top: 2px solid  white;"></span>
+
+</div>
+<a id="scrollUp" href="javascript:;" title="飞回顶部"></a>
+
+<div style="background: rgba(0, 0, 0, .8);display: flex;justify-content: center;padding:20px 0;" >
+    <img src="https://gtms02.alicdn.com/tps/i2/TB1W6egHVXXXXXHXXXXyZnLYXXX-740-115.png" alt="" class="img-responsive">
+</div>
+<div id="foot_nav">
+   <p>
+       <span>关于咸蛋</span>
+       <span>联系我们</span>
+       <span>友情链接</span>
+       <span>用户服务协议</span>
+       <span>隐私声明</span>
+   </p>
+    <p>
+        ©2018 www.xiandan.com卓越教育水电费科技三路加
+    </p>
+    <p>
+        版权所有
+    </p>
+</div>
+</body>
+
+<script src="__JS__/jquery-3.2.1.js"></script>
+<script src="__STATIC__/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="__JS__/index.js"></script>
+</html>

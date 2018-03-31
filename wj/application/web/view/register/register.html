@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+
+
+<html>
+
+<!-- Head -->
+<head>
+
+    <title>注册</title>
+
+    <!-- Meta-Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //Meta-Tags -->
+
+    <!-- Style --> <link rel="stylesheet" href="__CSS__/login.css" type="text/css" media="all">
+
+    <script src="__JS__/angular.js"></script>
+    <script src="__JS__/jquery-2.1.4.js"></script>
+
+    <!--<script>-->
+        <!--var app = angular.module("myForm", []);-->
+        <!--/*指令创建*/-->
+        <!--app.directive('equals',function(){-->
+            <!--return{-->
+                <!--require:'ngModel',-->
+                <!--link:function(scope,elm,attrs,ngModelCtrl){-->
+
+                    <!--function validateEqual(myValue){-->
+                        <!--var valid = (myValue === scope.$eval(attrs.equals));-->
+                        <!--ngModelCtrl.$setValidity('equal',valid);-->
+                        <!--return valid ? myValue : undefined;-->
+                    <!--}-->
+                    <!--ngModelCtrl.$parsers.push(validateEqual);-->
+                    <!--ngModelCtrl.$formatters.push(validateEqual);-->
+                    <!--scope.$watch(attrs.equals,function(){-->
+                        <!--ngModelCtrl.$setViewValue(ngModelCtrl.$viewValue);-->
+                    <!--})-->
+                <!--}-->
+            <!--}-->
+        <!--});-->
+    <!--</script>-->
+</head>
+<!-- //Head -->
+
+<!-- Body -->
+<body ng-app="">
+
+<img src="__STATIC__/image/logo.png">
+
+<div class="container w3layouts agileits">
+    <div class="login w3layouts agileits" style="border: none">
+        <div class="social-icons w3layouts agileits">
+            <p>- 其他方式登录 -</p>
+            <ul>
+                <li class="qq"><a href="#">
+                    <span class="icons w3layouts agileits"></span>
+                    <span class="text w3layouts agileits">QQ</span></a></li>
+                <li class="weixin w3ls"><a href="#">
+                    <span class="icons w3layouts"></span>
+                    <span class="text w3layouts agileits">微信</span></a></li>
+                <li class="weibo aits"><a href="#">
+                    <span class="icons agileits"></span>
+                    <span class="text w3layouts agileits">微博</span></a></li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+    </div>
+    <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
+    <div class="register w3layouts agileits">
+        <h2>注 册</h2>
+
+        <form id="formRegister" name="formRegister" action="{$registerUrl}" method="post">
+            <div>
+                <input type="text" class="userID" Name="userID" placeholder="用户ID" required ng-model="userIDs" ng-minlength="5" ng-maxlength="12" ng-blur="userID = true">
+                <span ng-show="formRegister.userID.$error.required && userID" style="color:red">用户名不能为空</span>
+                <span ng-show="formRegister.userID.$error.maxlength"  style="color: red">请控制用户名长度</span>
+                <span ng-show="formRegister.userID.$error.minlength"  style="color: red">用户名必须大于5位</span>
+            </div>
+            <div>
+                <input type="text" Name="username" placeholder="用户名" required ng-model="usernames" ng-maxlength="12" ng-blur="username = true">
+                <span ng-show="formRegister.username.$error.required && username" style="color:red">用户名不能为空</span>
+                <span ng-show="formRegister.username.$error.maxlength"  style="color: red">请控制用户名长度</span>
+            </div>
+            <div>
+
+                <input type="password" Name="userpsd" placeholder="密码" required ng-model="pwd" ng-maxlength="32"  ng-pattern='/^[A-Za-z0-9]+$/' ng-blur="userpsd = true">
+                <span ng-show="formRegister.userpsd.$error.required && userpsd"  style="color: red">密码不能为空</span>
+                <span ng-show="formRegister.userpsd.$error.maxlength"  style="color: red">请控制密码长度</span>
+                <span ng-show="formRegister.userpsd.$error.pattern"  style="color: red">必须是数字字母组成</span>
+            </div>
+            <div>
+                <input type="password" Name="reuserpsd" placeholder="密码验证" required ng-model="repwd" ng-maxlength="32"  ng-pattern='/^[A-Za-z0-9]+$/' ng-blur="reuserpsd = true" equals="pwd">
+                <span ng-show="formRegister.reuserpsd.$error.required && reuserpsd"  style="color: red">密码不能为空</span>
+                <span ng-show="pwd != repwd"  style="color:red">两次密码不一致</span>
+                <span ng-show="formRegister.reuserpsd.$error.maxlength"  style="color: red">请控制密码长度</span>
+                <span ng-show="formRegister.reuserpsd.$error.pattern"  style="color: red">必须是数字字母组成</span>
+            </div>
+            <div>
+                <input type="text" Name="PhoneNumber" placeholder="手机号码" required ng-model="pnb"  ng-pattern='/(^$)|^(((\+86)|(86))?1[34578]\d{9})$/' ng-blur="PhoneNumber = true">
+                <span ng-show="formRegister.PhoneNumber.$error.required && PhoneNumber"  style="color: red">手机不能为空</span>
+                <span ng-show="formRegister.PhoneNumber.$error.pattern  && PhoneNumber"  style="color: red">联系电话格式不正确！</span>
+            </div>
+            <div>
+                <input type="text" Name="usermail" placeholder="邮箱"  required ng-model="mail"  ng-pattern='/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/' ng-blur="usermail = true">
+                <span ng-show="formRegister.usermail.$error.required && usermail"  style="color: red">邮箱不能为空</span>
+                <span ng-show="formRegister.usermail.$error.pattern  && usermail"  style="color: red">邮箱格式不正确！</span>
+            </div>
+
+            <div class="send-button w3layouts agileits">
+                <input type="submit" class="btn btn-primary btn-lg" ng-disabled="formRegister.$invalid ||  pwd != repwd" value="免费注册" ng-disabled="submit(userForm)"/>&nbsp;
+                <p>
+                    <a  href="{$login_url}" style="color: rgba(10,10,10,0.77)">返回登录</a>
+                    <a href="{:url('index/index/index')}" style=""><span>返回首页</span></a>
+                </p>
+
+            </div>
+        </form>
+        <div class="clear"></div>
+    </div>
+
+    <div class="clear"></div>
+
+</div>
+
+</body>
+<script src="__JS__/jquery-form.js"></script>
+<script type="text/javascript">
+    //Goods模块路径
+    var userIdUrl='{:url("web/register/userId")}';                            //判断用户ID是否有重复
+</script>
+<script>
+    $("#formRegister").ajaxForm(function(data){
+        if(data.code==10005){
+            alert(data.msg);
+            location.href=LoginUrl;
+        }
+    });
+</script>
+<script>
+    var LoginUrl='{:url("web/Login/login")}';
+    $(".userID").blur(function(){
+        var userID=$(".userID").val();
+        $.ajax({
+            url:userIdUrl,
+            type:'post',
+            data:{userID:userID},
+            dataType:'json',
+            success:function(res){
+                if(res.length==0) {
+                    $("#userY").empty();
+                }
+                else
+                {
+                    $("#userY").empty();
+                    $(".userID").after("<span id='userY' style='color: red'>"+"ID已存在"+"</span>");
+                }
+            }
+
+        })
+    });
+</script>
+
+
+</html>
