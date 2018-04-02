@@ -53,7 +53,7 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">用户名</a></li>
+                        <li><a href="#">{$uname}</a></li>
                         <li><a href="#">退出</a></li>
                         <li class="dropdown">
                             <a href="#" id="navbarDrop2" class="dropdown-toggle" data-toggle="dropdown">网站导航<b class="caret"></b></a>
@@ -333,6 +333,8 @@
 <script src="__JS__/bootstrap.min.js"></script>
 <script type="text/javascript">
     var infoUrl = "{:url('user/center/getInfo')}";
+    var upImgUrl = "{:url('user/center/upImg')}";
+    var imgUrl ="__STATIC__/uploads/"
 </script>
 <script type="text/javascript" src="__JS__/center.js?a=3"></script>
 </html>

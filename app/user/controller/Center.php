@@ -9,6 +9,7 @@
 namespace app\user\controller;
 
 use think\Controller;
+use think\Request;
 use think\Session;
 
 class Center extends Controller
@@ -16,7 +17,12 @@ class Center extends Controller
 	/*显示个人中心页面*/
 	public function index()
 	{
-	   return $this->fetch('center');
+        $uname = Session::get('usid')?Session::get('usid'):'xianduan';
+
+        $this->assign('uname',$uname);
+
+        return $this->fetch('center');
+
 	}
 
 	/*获取用户信息*/
@@ -29,5 +35,26 @@ class Center extends Controller
         $data = db('user')->where($arr)->select();
 
         return $data;
+    }
+
+    public function upImg(Request $request)
+    {
+        $file = $request->file('file');
+
+        if($file)
+        {
+            $info = $file->move(ROOT_PATH . 'public/static' . DS . 'uploads');
+
+            if ($info)
+            {
+
+                 return $info->getSaveName();
+            }
+            else
+             {
+                // 上传失败获取错误信息
+                return $file->getError();
+            }
+        }
     }
 }
