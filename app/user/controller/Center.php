@@ -17,7 +17,7 @@ class Center extends Controller
 	/*显示个人中心页面*/
 	public function index()
 	{
-        $uname = Session::get('usid')?Session::get('usid'):'xianduan';
+        $uname = Session::get('uname')?Session::get('uname'):'xd1234';
 
         $this->assign('uname',$uname);
 
@@ -28,15 +28,16 @@ class Center extends Controller
 	/*获取用户信息*/
     public function getInfo()
     {
-        $uid = Session::get('usid')?Session::get('usid'):1;
+        $uname = Session::get('usid')?Session::get('usid'):'xd1234';
 
-        $arr = ['usid'=>$uid];
+        $arr = ['uname'=>$uname];
 
-        $data = db('user')->where($arr)->select();
+        $data = db('user')->where($arr)->find();
 
         return $data;
     }
 
+    //修改头像
     public function upImg(Request $request)
     {
         $file = $request->file('file');
@@ -56,5 +57,32 @@ class Center extends Controller
                 return $file->getError();
             }
         }
+    }
+
+    //保存头像路径
+    public function saveUrl()
+    {
+        $uname = Session::get('uname')?Session::get('uname'):'xd1234';
+
+        $url = input('?post.url')?input('post.url'):'';
+
+        try{
+
+            $re = db('user')->where('uname',$uname)->update(['uimg'=>$url]);
+
+            if($re)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        catch (\Exception $e)
+        {
+            return -1;
+        }
+
     }
 }
