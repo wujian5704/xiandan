@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--向下兼容IE8的版本-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--设置页面的宽度和访问设备的宽度一致，并且禁止缩放，接近原生的效果-->
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <title>咸蛋网-商品详情</title>
+    <link rel="icon" href="https://ws1.sinaimg.cn/large/93ab07cbgy1fpnyupdxsuj206e02ujrc.jpg" type="image/x-icon"/>
+    <link rel="shortcut icon" href="/TP5/public/favicon.ico"/>
+    <!--bootstrap css样式插件-->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--个人css代码-->
+    <link rel="stylesheet" href="__CSS__/goods.css">
+    <!--bootstrap 基于jQuery插件-->
+    <script src="__JS__/jquery.js"></script>
+    <!--bootstrap js插件-->
+    <script src="__JS__/bootstrap.min.js"></script>
+    <!--vue js插件 -->
+    <script type="text/javascript" src="__JS__/vue.js"></script>
+    <style>
+        .row {
+            margin-right: 0px;
+        }
+        .hli{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<!--头部菜单-->
+<div class="head">
+    <nav class="navbar navbar-blue navbar-fixed-top">
+        <div class="container">
+            <!--以下div 只在移动端显示-->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNav" aria-expanded="false">
+                    <span class="text-warning">点我展开</span>
+                    <span class="caret"></span>
+                </button>
+                <a href="#">
+                    <img class="img-responsive" src="https://ws1.sinaimg.cn/large/93ab07cbgy1fpnyupdxsuj206e02ujrc.jpg" width="140" height="48">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNav">
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href="{:url('index/index/index')}">首页<span class="sr-only">(current)</span></a></li>
+                    <li><a href="{:url('index/auction/auction')}">咸蛋拍卖场<span class="sr-only">(current)</span></a></li>
+                    <li class="dropdown">
+                        <a href="#" id="navbarDrop1" class="dropdown-toggle" data-toggle="dropdown">账号设置
+                            <b class="caret"></b>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDrop1">
+                            <ul class="menu-left">
+                                <li class="menu-option"><a href="">手机绑定</a></li>
+                                <li class="menu-option"><a href="">邮箱绑定</a></li>
+                                <li class="menu-option"><a href="">修改资料</a></li>
+                            </ul>
+                            <ul class="menu-right">
+                                <li class="menu-option"><a href="">登陆密码</a></li>
+                                <li class="menu-option"><a href="">支付密码</a></li>
+                                <li class="menu-option"><a href="">银行卡管理</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">用户名</a></li>
+                    <li><a href="#">退出</a></li>
+                    <li class="dropdown">
+                        <a href="#" id="navbarDrop2" class="dropdown-toggle" data-toggle="dropdown">网站导航<b class="caret"></b></a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDrop2">
+                            <ul>
+                                <li><a href="">1</a></li>
+                                <li><a href="">2</a></li>
+                                <li></li><a href="">3</a></li>
+                                <li></li><a href="">4</a></li>
+                                <li></li><a href="">5</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<!--content-->
+
+<!--部分详情-->
+<div class="container content-box">
+    <div class="row main-content">
+        <!--<div class="col-sm-1"></div>-->
+        <div class="col-sm-6">
+            <!--广告-->
+            <!--轮播图-->
+            <div class="container-fluid">
+                <div class="carousel slide" data-interval="2000" data-ride="carousel" id="carousel_one">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="https://img.alicdn.com/bao/uploaded/i3/6000000004497/TB2S_VmlAfb_uJjSsrbXXb6bVXa_!!0-fleamarket.jpg_728x728.jpg" class="img-responsive"/>
+                        </div>
+                        <div class="item">
+                            <img src="https://img.alicdn.com/bao/uploaded/i3/6000000004497/TB2S_VmlAfb_uJjSsrbXXb6bVXa_!!0-fleamarket.jpg_728x728.jpg" class="img-responsive"/>
+                        </div>
+                        <div class="item">
+                            <img src="https://img.alicdn.com/bao/uploaded/i3/6000000004497/TB2S_VmlAfb_uJjSsrbXXb6bVXa_!!0-fleamarket.jpg_728x728.jpg" class="img-responsive"/>
+                        </div>
+                    </div>
+                    <!--圆点-->
+                    <ol class="carousel-indicators">
+                        <li data-slide-to="0" data-target="#carousel_one" class="active"></li>
+                        <li data-slide-to="1" data-target="#carousel_one"></li>
+                        <li data-slide-to="2" data-target="#carousel_one"></li>
+                    </ol>
+                    <!--左右切换-->
+                    <a class="left carousel-control" href="#carousel_one" data-slide="prev">
+                        <span class="glyphicon"></span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel_one" data-slide="next">
+                        <span class="glyphicon"></span>
+                    </a>
+                </div>
+            </div>
+            <!--小图-->
+            <div class="mini_img" style="margin-top: 20px">
+                <img style="width: 100px;height: 100px" src="https://img.alicdn.com/bao/uploaded/i3/6000000004497/TB2S_VmlAfb_uJjSsrbXXb6bVXa_!!0-fleamarket.jpg_728x728.jpg"/>
+                <img style="width: 100px;height: 100px" src="https://img.alicdn.com/bao/uploaded/i3/6000000004497/TB2S_VmlAfb_uJjSsrbXXb6bVXa_!!0-fleamarket.jpg_728x728.jpg"/>
+                <img style="width: 100px;height: 100px" src="https://img.alicdn.com/bao/uploaded/i3/6000000004497/TB2S_VmlAfb_uJjSsrbXXb6bVXa_!!0-fleamarket.jpg_728x728.jpg"/>
+            </div>
+        </div>
+
+        <!--部分详情-->
+        <div class="col-sm-6">
+            <div class="row" style="font-size: 12px;background: #e1fffc;">
+                <div class="col-sm-2">
+                    <img src="https://ws1.sinaimg.cn/large/93ab07cbgy1fpo3ddwesaj2028028wee.jpg" class="img-circle"  alt="">
+                </div>
+                <div class="col-sm-10">
+                    <p>
+                        用户名：
+                    </p>
+                    <p>
+                        已加入咸蛋 <span style="color: #ff511b;">629</span>天，卖出商品<span style="color: #ff511b;">0</span>件
+                    </p>
+                    <p>
+                    <ul>
+                        <li class="hli">
+                            <img src="https://ws1.sinaimg.cn/large/e6b6dee3gy1fptj9l9rg7j200i00j09i.jpg" alt="">
+                            未实名
+                        </li>
+                        <li class="hli">
+                            <img src="https://ws1.sinaimg.cn/large/e6b6dee3gy1fptn1txm9lj200i00k0j0.jpg" alt="">
+                            手机认证
+                        </li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div class="onetitle">
+                    <strong class="onetitlefont">适马 135mm f/1.8 DG OS（A）</strong>
+                </div>
+                <div class="row" style="background-color: transparent;">
+                    <div class="col-sm-2">
+                        <div style="background: #ff6619;color: white;font-size: 15px; width: 50px;" class="text-center">
+                            <p style="margin: 0;">距离</p>
+                            <p style="margin: 0;">结束</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        <p><strong>4天0时10分10秒</strong></p>
+                        <p style="font-size: 13px;color: gray;">结束30秒内继续出价，将延迟30秒</p>
+                    </div>
+                </div>
+                <ul class="portion">
+                    <li class="">
+                        <span class="text-danger">转&nbsp;&nbsp;卖&nbsp;&nbsp;价：</span>
+                        <span class=""><b>&yen;</b><em style="color: red;font-size: 30px">888.00</em></span>
+                        <span style="float: right">
+                        </span>
+                    </li>
+                    <li>
+                        <span class="text-danger">成　　色：</span>
+                        <em>七成新</em>
+                    </li>
+                    <li>
+                        <span class="text-danger">所&nbsp;&nbsp;在&nbsp;&nbsp;地：</span>
+                        <em>福建福州 城区</em>
+                    </li>
+                    <li class="">
+                        <span class="text-danger">联系方式：</span>
+                        <em>12346578910</em>
+                    </li>
+                    <li class="">
+                        <span class="text-danger">交易方式：</span>
+                        <em>在线交易</em>
+                    <li class="">
+                        <a class="" href="#">
+                            至 <em>福建福州</em><i></i>
+                        </a>
+                        <span>运费：<em>&yen;</em><em>0</em></span>
+                    </li>
+                </ul>
+                <div>
+                    <button type="button" class="btn btn-success btn-lg center-block">立刻购买</button>
+                </div>
+                <div id="portion">
+                    <!--议价-->
+                    <button type="button" class="btn btn-info btn-xs" data-toggle="collapse"
+                            data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">议价</button>
+                    <!--议价表-->
+                    <div class="collapse" id="collapseExample" style="margin-top: 10px">
+                        <p>议价有效期为24小时，如果卖家同意您的出价，系统将自动创建订单并短信通知您。</p>
+                        <div>
+                            <label>诚心以：</label>
+                            <div>
+                                <input type="text"> 元（不含运费）的价格入手该宝贝
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px">
+                            <label>手机号：</label>
+                            <div>
+                                <input type="text">
+                                <span>请留下手机号，方便订单生成后及时通知您</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 20px">
+                    <a class="btn btn-warning btn-xs" href="#">分享（<em>0</em>）</a>
+                    <a class="btn btn-warning btn-xs" href="#">赞（<em>0</em>）</a>
+                    <a class="btn btn-warning btn-xs" href="#">喜欢（<em>0</em>）</a>
+                </div>
+                <div  style="margin-top: 20px">
+                    <div class="">
+                        <strong>由支付宝先行保管,验货OK再付款到卖家账户。</strong>
+                    </div>
+                    <div>
+                        <strong class="desc">经支付宝核实会员身份和银行账户信息,真实可靠。</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--部分详情 END-->
+
+<!--商品详情 买家留言 卖家信息-->
+
+<div style="margin-top: 50px" class="row main-content" id="myvue">
+    <div class="col-sm-offset-1 col-sm-6">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs nav-pills" role="tablist">
+            <li role="presentation" class="active"><a href="#home"role="tab" data-toggle="tab">描述商品</a></li>
+            <li role="presentation"><a href="#profile"  role="tab" data-toggle="tab">给TA留言</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <!--商品详情-->
+            <div role="tabpanel" class="tab-pane active" id="home">
+                <div class="menuOne" style="margin-bottom: 10px">
+                    <p class="menOne_item"><b>商品名称:</b>苹果6s，粉色机换的黑色屏幕</p>
+                    <p class="menOne_item"><b>商品类型:</b>iphone-苹果6s</p>
+                    <p class="menOne_item"><b>商品数量:</b>1</p>
+                    <p class="menOne_item"><b>商品现价:&yen;</b>888.00</p>
+                    <p class="menOne_item"><b>商品原价:&yen;</b>3000.00</p>
+                    <p class="menOne_item"><b>商品成色:</b>七成新</p>
+                    <p class="menOne_item"><b>卖家ID:</b>10086</p>
+                    <p class="menOne_item"><b>发布时间:</b>2018-3-26</p>
+                </div>
+                <div style="margin-left: 10px"><b>商品描述:</b>商品描述商品描述商品描述商品描述商品描述商品描述
+                    商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述商品描述</div>
+                <div style="margin-left: 10px">
+                    <b>图片描述:</b>
+                </div>
+                <img src="https://img.alicdn.com/bao/uploaded/i3/6000000004497/TB2S_VmlAfb_uJjSsrbXXb6bVXa_!!0-fleamarket.jpg_728x728.jpg"/>
+            </div>
+            <!--买家留言-->
+            <div role="tabpanel" class="tab-pane" id="profile" style="margin-top: 20px;">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <img src="https://ws1.sinaimg.cn/large/93ab07cbgy1fpo3ddwesaj2028028wee.jpg" alt="" class="img-circle">
+                    </div>
+                    <form class="form-inline col-sm-10" >
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="说出你的疑问" style="width: 225px;height: 100px;">
+                                </div>
+                                <div class="col-sm-4" style="line-height: 100px;">
+                                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100px;">评论</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <table class="table table-hover" v-for="(val,key) in auctMessage">
+                    <tr class="info">
+                        <th>
+                            <a href="#">
+                                <img style="width: 40px;height: 40px" src="{{val.headimg}}" alt="头像" class="img-thumbnail" />
+                            </a>
+                            <span style="font-size: 20px">{{val.name}}</span>
+                            <br>
+                            <span>
+                                    {{val.content}}
+                                </span>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="advertising col-sm-4">
+        <img src="http://gw.alicdn.com/tps/i3/TB19zkLJXXXXXc3XFXXhXAC0FXX-640-247.jpg" class="img-responsive"/>
+        <img src="http://gw.alicdn.com/tps/i3/TB19zkLJXXXXXc3XFXXhXAC0FXX-640-247.jpg" class="img-responsive"/>
+        <img src="http://gw.alicdn.com/tps/i3/TB19zkLJXXXXXc3XFXXhXAC0FXX-640-247.jpg" class="img-responsive"/>
+        <img src="http://gw.alicdn.com/tps/i3/TB19zkLJXXXXXc3XFXXhXAC0FXX-640-247.jpg" class="img-responsive"/>
+    </div>
+</div>
+
+<!--买家留言 商品详情 卖家信息 END-->
+
+
+<!--安全保障 大型屏幕-->
+<div class="row main-content visible-lg">
+    <div class="col-sm-offset-1" style="margin-bottom: 20px;margin-top: 50px">
+        <h2><b>安全保障</b></h2>
+    </div>
+
+    <div class="row main-content" style="margin-bottom: 20px">
+        <div class="col-sm-offset-3 col-sm-2" style="background-image: url('https://ws1.sinaimg.cn/large/e6b6dee3gy1fptkor8fx3j20bj06adg0.jpg');width: 414px;height:52px;
+            background-position: 1px 1px;"></div>
+    </div>
+    <ul class="list-unstyled">
+
+        <!--卖家实名认证-->
+        <li class="row main-content">
+            <div class="col-sm-offset-1 col-sm-2" style="background-image: url('https://ws1.sinaimg.cn/large/e6b6dee3gy1fptkor8fx3j20bj06adg0.jpg');width: 78px;height:78px;
+            background-position: -320px -36px;"></div>
+            <span  class="col-sm-3">
+                <div style="background-image: url('https://ws1.sinaimg.cn/large/e6b6dee3gy1fptkor8fx3j20bj06adg0.jpg');width: 128px;height:37px;
+            background-position: 1px -35px;"></div>
+                <span>淘宝二手卖家必备网络身份证；<br>经支付宝核实会员身份信息和银行账户信息。</span>
+            </span>
+            <div class="col-sm-1" style="background-image: url('https://ws1.sinaimg.cn/large/e6b6dee3gy1fptkor8fx3j20bj06adg0.jpg');width: 59px;height:75px;
+            background-position: -276px -119px;"></div>
+            <div class="col-sm-1" style="background-image: url('https://ws1.sinaimg.cn/large/e6b6dee3gy1fptkor8fx3j20bj06adg0.jpg');width: 355px;height:23px;
+            background-position: 68px -132px;margin-top: 29px;"></div>
+        </li>
+
+        <!--专业团队支撑-->
+
+        <li class="row main-content" style="margin-top: 25px;">
+            <div class="col-sm-offset-1 col-sm-2" style="background-image: url('https://ws1.sinaimg.cn/large/e6b6dee3gy1fptkor8fx3j20bj06adg0.jpg');width: 64px;height:78px;
+            background-position: -256px -36px;margin-right: 14px"></div>
+            <span  class="col-sm-3">
+                <div style="background-image: url('https://ws1.sinaimg.cn/large/e6b6dee3gy1fptkor8fx3j20bj06adg0.jpg');width: 128px;height:20px;
+            background-position: 1px -71px;margin-top: 13px;"></div>
+                <p>发现可疑卖家或商品，发起举报，由安全部门专员介入处理交易出现纠纷，双方协商不成，由专业的客服小二介入仲裁。</p>
+            </span>
+            <div class="col-sm-1" style="background-image: url('https://ws1.sinaimg.cn/large/e6b6dee3gy1fptkor8fx3j20bj06adg0.jpg');width: 59px;height:75px;
+            background-position: -276px -119px;"></div>
+            <div class="col-sm-1" style="background-image: url('https://ws1.sinaimg.cn/large/e6b6dee3gy1fptkor8fx3j20bj06adg0.jpg');width: 355px;height:23px;
+            background-position: 68px -155px;margin-top: 29px;"></div>
+        </li>
+
+        <!--支付宝担保交易-->
+
+        <li class="row main-content">
+            <div class="col-sm-offset-1 col-sm-2" style="background-image: url('https://ws1.sinaimg.cn/large/e6b6dee3gy1fptkor8fx3j20bj06adg0.jpg');width: 63px;height:78px;
+            background-position: -200px -36px;margin-right: 14px"></div>
+            <span  class="col-sm-3">
+                <div style="background-image: url('https://ws1.sinaimg.cn/large/e6b6dee3gy1fptkor8fx3j20bj06adg0.jpg');width: 140px;height:21px;
+            background-position: 1px -91px;margin-top: 20px;"></div>
+                <p>支付款项由支付宝先行保管，验货OK后，再确认付款到卖家账户，买家发起交易，杜绝钓鱼网站。</p>
+            </span>
+            <div class="col-sm-1" style="background-image: url('https://ws1.sinaimg.cn/large/e6b6dee3gy1fptkor8fx3j20bj06adg0.jpg');width: 59px;height:75px;
+            background-position: -276px -119px;"></div>
+            <div class="col-sm-1" style="background-image: url('https://ws1.sinaimg.cn/large/e6b6dee3gy1fptkor8fx3j20bj06adg0.jpg');width: 355px;height:23px;
+            background-position: 68px -178px;margin-top: 29px;"></div>
+        </li>
+
+    </ul>
+</div>
+
+<!--安全保障 小型屏幕-->
+<div class="row main-content visible-sm" style="margin-left: 30px;width: 355px;">
+    <div class="col-sm-offset-1" style="margin-bottom: 20px;margin-top: 50px">
+        <h2 style="margin-left: -11px;"><b>安全保障</b></h2>
+    </div>
+
+    <div class="row main-content" style="margin-bottom: 20px">
+        <div class="col-sm-offset-1 col-sm-2" style="background-image: url('https://ws1.sinaimg.cn/large/e6b6dee3gy1fptkor8fx3j20bj06adg0.jpg');width: 414px;height:52px;
+            background-position: 1px 1px;"></div>
+    </div>
+    <ul class="list-unstyled">
+
+        <!--卖家实名认证-->
+        <li class="row main-content">
+            <div class="col-sm-offset-1 col-sm-2" style="background-image: url('https://ws1.sinaimg.cn/large/e6b6dee3gy1fptkor8fx3j20bj06adg0.jpg');width: 78px;height:78px;
+            background-position: -320px -36px;"></div>
+            <span  class="col-sm-3">
+                    <div style="background-image: url('https://ws1.sinaimg.cn/large/e6b6dee3gy1fptkor8fx3j20bj06adg0.jpg');width: 128px;height:37px;
+            background-position: 1px -35px;"></div>
+                    <span>淘宝二手卖家必备网络身份证；<br>经支付宝核实会员身份信息和银行账户信息。</span>
+                </span>
+        </li>
+
+        <!--专业团队支撑-->
+
+        <li class="row main-content" style="margin-top: 25px;">
+            <div class="col-sm-offset-1 col-sm-2" style="background-image: url('https://ws1.sinaimg.cn/large/e6b6dee3gy1fptkor8fx3j20bj06adg0.jpg');width: 64px;height:78px;
+            background-position: -256px -36px;margin-right: 14px"></div>
+            <span  class="col-sm-3">
+                <div style="background-image: url('https://ws1.sinaimg.cn/large/e6b6dee3gy1fptkor8fx3j20bj06adg0.jpg');width: 128px;height:20px;
+            background-position: 1px -71px;margin-top: 13px;"></div>
+                <p>发现可疑卖家或商品，发起举报，由安全部门专员介入处理交易出现纠纷，双方协商不成，由专业的客服小二介入仲裁。</p>
+            </span>
+        </li>
+
+        <!--支付宝担保交易-->
+
+        <li class="row main-content">
+            <div class="col-sm-offset-1 col-sm-2" style="background-image: url('https://ws1.sinaimg.cn/large/e6b6dee3gy1fptkor8fx3j20bj06adg0.jpg');width: 63px;height:78px;
+            background-position: -200px -36px;margin-right: 14px"></div>
+            <span  class="col-sm-3">
+                <div style="background-image: url('https://ws1.sinaimg.cn/large/e6b6dee3gy1fptkor8fx3j20bj06adg0.jpg');width: 140px;height:21px;
+            background-position: 1px -91px;margin-top: 20px;"></div>
+                <p>支付款项由支付宝先行保管，验货OK后，再确认付款到卖家账户，买家发起交易，杜绝钓鱼网站。</p>
+            </span>
+        </li>
+
+    </ul>
+</div>
+
+<div style="background: rgba(0, 0, 0, .6);display: flex;justify-content: center;padding: 30px 0;" >
+    <img src="https://gtms02.alicdn.com/tps/i2/TB1W6egHVXXXXXHXXXXyZnLYXXX-740-115.png" alt="" class="img-responsive">
+</div>
+
+<!--content END-->
+<!--页脚-->
+<div class="foot">
+    <div class="container">
+        <div class="row text-center foot-nav">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2">关于咸蛋</div>
+            <div class="col-sm-2">联系我们</div>
+            <div class="col-sm-2">友情链接</div>
+            <div class="col-sm-2">用户服务协议</div>
+            <div class="col-sm-2">隐私声明</div>
+        </div>
+    </div>
+    <div class="copyright text-center">
+        <p>© 2018 www.xiandan.com 卓跃教育HF1708班（咸蛋网）</p>
+        <p>版权所有 闽ICP证1708005号</p>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="__JS__/goods.js"></script>
+<script>
+    Vue.component('goodsDal',{
+        template:'',
+        data:function(){
+            return{
+
+            }
+        },
+        methods:{
+
+        }
+    });
+    new Vue({
+        el:'#myvue',
+        data:{
+            auctMessage:[
+                {'name':'张三','headimg':'https://ws1.sinaimg.cn/large/93ab07cbgy1fpo3ddwesaj2028028wee.jpg','content':'好评'},
+                {'name':'李四','headimg':'https://ws1.sinaimg.cn/large/93ab07cbgy1fpo3ddwesaj2028028wee.jpg','content':'好评好评'},
+                {'name':'王五','headimg':'https://ws1.sinaimg.cn/large/93ab07cbgy1fpo3ddwesaj2028028wee.jpg','content':'好评好评好评'},
+                {'name':'赵六','headimg':'https://ws1.sinaimg.cn/large/93ab07cbgy1fpo3ddwesaj2028028wee.jpg','content':'好评好评好评好评'}
+            ]
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--向下兼容IE8的版本-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--设置页面的宽度和访问设备的宽度一致，并且禁止缩放，接近原生的效果-->
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <title>咸蛋网-商品搜索</title>
+    <link rel="icon" href="__STATIC__/img/logo1.png" type="image/x-icon"/>
+    <!--<link rel="shortcut icon" href="/TP5/public/favicon.ico"/>-->
+    <!--bootstrap css样式插件-->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--个人css代码-->
+    <link rel="stylesheet" href="__CSS__/seach.css">
+    <!--bootstrap 基于jQuery插件-->
+    <script src="__JS__/jquery.js"></script>
+    <!--bootstrap js插件-->
+    <script src="__JS__/bootstrap.min.js"></script>
+    <!--vue js插件 -->
+    <script type="text/javascript" src="__JS__/vue.js"></script>
+    <style>
+        .row {
+            margin-right: 0px;
+        }
+    </style>
+</head>
+<body>
+<!--头部菜单-->
+<div class="head">
+    <nav class="navbar navbar-blue navbar-fixed-top">
+        <div class="container">
+            <!--以下div 只在移动端显示-->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNav"
+                        aria-expanded="false">
+                    <span class="text-warning">点我展开</span>
+                    <span class="caret"></span>
+                </button>
+                <a href="#">
+                    <img class="img-responsive" src="https://ws1.sinaimg.cn/large/93ab07cbgy1fpnyupdxsuj206e02ujrc.jpg"
+                         width="140" height="48">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNav">
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href="{:url('index/index/index')}">首页<span class="sr-only">(current)</span></a></li>
+                    <li class="dropdown">
+                        <a href="#" id="navbarDrop1" class="dropdown-toggle" data-toggle="dropdown">账号设置
+                            <b class="caret"></b>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDrop1">
+                            <ul class="menu-left">
+                                <li class="menu-option"><a href="">手机绑定</a></li>
+                                <li class="menu-option"><a href="">邮箱绑定</a></li>
+                                <li class="menu-option"><a href="">修改资料</a></li>
+                            </ul>
+                            <ul class="menu-right">
+                                <li class="menu-option"><a href="">登陆密码</a></li>
+                                <li class="menu-option"><a href="">支付密码</a></li>
+                                <li class="menu-option"><a href="">银行卡管理</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">用户名</a></li>
+                    <li><a href="#">退出</a></li>
+                    <li class="dropdown">
+                        <a href="#" id="navbarDrop2" class="dropdown-toggle" data-toggle="dropdown">网站导航<b
+                                class="caret"></b></a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDrop2">
+                            <ul>
+                                <li><a href="">1</a></li>
+                                <li><a href="">2</a></li>
+                                <li></li>
+                                <a href="">3</a></li>
+                                <li></li>
+                                <a href="">4</a></li>
+                                <li></li>
+                                <a href="">5</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<!--content-->
+
+<div id="myvue">
+    <!--站内搜索-->
+    <div class="row">
+        <div class="input-group col-sm-offset-4 col-lg-4">
+            <input type="text" class="form-control" placeholder="请输入关键字">
+            <span class="input-group-btn">
+            <button class="btn btn-success" type="button">站内搜索</button>
+        </span>
+        </div>
+    </div>
+
+    <!--联级搜索-->
+    <div class="row main-content">
+        <div class="col-sm-offset-1 col-lg-10">
+            <div class="">
+                <!--以下div 只在移动端显示-->
+                <!--分类-->
+                <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#classification"
+                                aria-expanded="false">
+                            <span class="text-warning">分类筛选</span>
+                            <span class="caret"></span>
+                        </button>
+                </div>
+                <div class="collapse navbar-collapse" id="classification">
+                        <span class="visible-lg" style="width: 80px;height: 50px;line-height: 50px;padding-left: 30px;"><b>分类：</b></span>
+                        <!-- Nav tabs -->
+                        <!--分类-->
+                        <ul class="nav nav-tabs nav-pills classification_all all_ul" role="tablist">
+                            <li class="active" id="t0"><a data-toggle="tab">全部</a></li>
+                            <li @click="seachsoods($event.target)" v-for="type in typeList">
+                                <a data-toggle="tab"  :id="'t'+type.typeid+''">{{type.tname}}</a>
+                            </li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <!--品牌-->
+                        <span class="visible-lg" style="width: 80px;height: 50px;line-height: 50px;padding-left: 30px;"><b>品牌：</b></span>
+                        <!-- Nav tabs-->
+                        <ul class="nav nav-tabs nav-pills classification_all all_ul classification_cont">
+                            <li class="active" id="b0"><a data-toggle="tab">全部</a></li>
+                            <li @click="seachsoods($event.target)" v-for="brand in brandList">
+                                <a data-toggle="tab" :id="'b'+brand.bid+''">{{brand.bname}}</a>
+                            </li>
+                        </ul>
+                        <span class="visible-lg" style="width: 80px;height: 50px;line-height: 50px;padding-left: 30px;"><b>规格：</b></span>
+                        <!--规格-->
+                        <ul class="nav nav-tabs nav-pills classification_all all_ul classification_cont">
+                            <li class="active"><a data-toggle="tab">全部</a></li>
+                            <li @click="seachsoods($event.target)" v-for="spec in specList" id="s0">
+                                <a data-toggle="tab" :id="'s'+spec.spid+''">{{spec.spname}}</a>
+                            </li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--商品显示-->
+    <div class="row main-content" style="margin-top: 20px">
+        <div class="col-sm-offset-1 col-lg-10">
+            <div class="list-group">
+                <a href="#" class="list-group-item disabled">
+                    <div class="menuOne">
+                        <p class="menOne_item"><b>商品图片</b></p>
+                        <p class="menOne_item"><b>商品名称</b></p>
+                        <p class="menOne_item"><b>价格</b></p>
+                        <p class="menOne_item"><b>所在地</b></p>
+                        <p class="menOne_item"><b>卖家信息</b></p>
+                    </div>
+                </a>
+                <a v-for="(v,k) in goodList" :href="'{:url('goods/goods/goods')}?id='+v.goodid+''"
+                   class="list-group-item" :id="v.goodid" style="margin-bottom: 10px" @click="togoodsid(v.goodid)">
+                    <div class="menuOne">
+                        <p class="menOne_item">
+                            <img class="img-thumbnail" :src="v.gimg" style="width: 80px;height: 80px">
+                        </p>
+                        <p class="menOne_item"><b>{{v.gname}}</b></p>
+                        <p class="menOne_item"><b>&yen;{{v.goldprice}}</b></p>
+                        <p class="menOne_item"><b>福建福州 城区</b></p>
+                        <p class="menOne_item"><b>
+                            <img class="img-thumbnail" :src="v.uimg" style="width: 80px;height: 80px">
+                            {{v.uname}}
+                        </b></p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--分页-->
+    <nav aria-label="Page navigation row main-content" style="margin-left: 127px">
+        <ul class="pagination">
+            <li v-for="val in pagenumber" @click="topage(val)"><a>{{val}}</a></li>
+        </ul>
+    </nav>
+</div>
+<!--底部图片-->
+<div class="visible-lg">
+    <div style="background: rgba(0, 0, 0, .6);display: flex;justify-content: center;padding: 30px 0;">
+        <img src="https://gtms02.alicdn.com/tps/i2/TB1W6egHVXXXXXHXXXXyZnLYXXX-740-115.png" alt=""
+             class="img-responsive">
+    </div>
+</div>
+<!--content END-->
+<!--页脚-->
+<div class="foot visible-lg">
+    <div class="container">
+        <div class="row text-center foot-nav">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2">关于咸蛋</div>
+            <div class="col-sm-2">联系我们</div>
+            <div class="col-sm-2">友情链接</div>
+            <div class="col-sm-2">用户服务协议</div>
+            <div class="col-sm-2">隐私声明</div>
+        </div>
+    </div>
+    <div class="copyright text-center">
+        <p>© 2018 www.xiandan.com 卓跃教育HF1708班（咸蛋网）</p>
+        <p>版权所有 闽ICP证1708005号</p>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    // 首页显示商品路径
+    var url = "{:url('seach/seach/showgoods')}";
+    // 分类搜索显示商品路径
+    var typeurl = "{:url('seach/seach/goodstype')}?id=";
+    // 分页显示商品路径
+    var pageurl = "{:url('seach/seach/showgoods')}?page=";
+</script>
+<script type="text/javascript" src="__JS__/seach.js?ihih"></script>
+</html>
