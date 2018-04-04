@@ -2,8 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    {*引用boostrap CSS*}
-    <link rel="stylesheet" href="__CSS__/bootstrap.min.css">
     <title>跳转提示</title>
     <style type="text/css">
         *{ padding: 0; margin: 0; }
@@ -17,7 +15,6 @@
     </style>
 </head>
 <body>
-<div class="col-md-offset-2 col-md-8"></div>
     <div class="system-message">
         <?php switch ($code) {?>
             <?php case 1:?>
@@ -48,8 +45,4 @@
         })();
     </script>
 </body>
-<!--JQ文件-->
-<script src="__JS__/jquery-2.1.4.js"></script>
-<!--bootstrap js文件-->
-<script src="__JS__/bootstrap.min.js"></script>
 </html>

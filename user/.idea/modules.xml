@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/xiandanedit.iml" filepath="$PROJECT_DIR$/.idea/xiandanedit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/xiandan.iml" filepath="$PROJECT_DIR$/.idea/xiandan.iml" />
     </modules>
   </component>
 </project>

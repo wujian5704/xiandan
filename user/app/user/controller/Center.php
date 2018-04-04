@@ -7,9 +7,8 @@
  */
 
 namespace app\user\controller;
-
+use think\Request;
 use base\Base;
-use think\Exception;
 use think\Session;
 //载入ucpass类短信验证
 
@@ -18,12 +17,52 @@ class Center extends Base
 	/*显示个人中心页面*/
 	public function index()
 	{
-        $uid = Session::has('usid')?Session::get('usid'):1;
+        $uname = Session::has('uname')?Session::get('uname'):'xd1234';
 
-        $this->assign('uname','我是你大爷');
+        $this->assign('uname',$uname);
 
         return $this->fetch('center');
 	}
+    //修改头像
+    public function upImg(Request $request)
+    {
+        $file = $request->file('file');
+        if($file)
+        {
+            $info = $file->move(ROOT_PATH . 'public/static' . DS . 'uploads');
+            if ($info)
+            {
+                return $info->getSaveName();
+            }
+            else
+            {// 上传失败获取错误信息
+                return $file->getError();
+            }
+        }
+    }
+    //保存头像路径
+    public function saveUrl()
+    {
+        $uname = Session::has('uname')?Session::get('uname'):'xd1234';
+        $url = input('?post.url')?input('post.url'):'';
+        try{
+
+            $re = db('user')->where('uname',$uname)->update(['uimg'=>$url]);
+
+            if($re)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        catch (\Exception $e)
+        {
+            return -1;
+        }
+    }
 	//绑定手机
     public function boundPhone()
     {
@@ -31,14 +70,14 @@ class Center extends Base
         $code = input('?post.code')?input('post.code'):"";
         $phone = input('?post.phone')?input('post.phone'):"";
         $pwd = input('?post.pwd')?input('post.pwd'):"";
-        $uid = Session::has('usid')?Session::get('usid'):1;
+        $uname = Session::has('uname')?Session::get('uname'):'xd1234';
         if(!empty($phone) && !empty($pwd) && $realCode == $code)
         {
             try
             {
                 $pwdMd5 = md5($pwd);
                 $data = ["uphone"=>$phone];
-                $result = db("user")->where("upsd",$pwdMd5)->where("usid",$uid)->update($data);
+                $result = db("user")->where("upsd",$pwdMd5)->where("uname",$uname)->update($data);
                 if($result == 1)
                 {
                     return $this->reminder(10000,'Center','boundSuccess');
@@ -70,8 +109,7 @@ class Center extends Base
         $param = substr(strval(mt_rand(10000,19999)),1,4);//随机4位数字验证码
         Session::set('verifiNum',$param);//将验证码存起来校验
         $mobile = input('?post.phone')?input('post.phone'):"";//手机号码
-        $uid = "";
-        $ucpass->SendSms($appid,$templateid,$param,$mobile,$uid);
+        $ucpass->SendSms($appid,$templateid,$param,$mobile,"");
     }
     //清除短信验证session
     public function deleVerifiNum()
@@ -81,7 +119,7 @@ class Center extends Base
     //修改用户登录密码
     public function upPassWord()
     {
-        $uid = Session::has('usid')?Session::get('usid'):1;
+        $uname = Session::has('uname')?Session::get('uname'):'xd1234';
         $oldPwd = input('?post.oldPwd')?input('post.oldPwd'):"";
         $newPwd = input('?post.newPwd')?input('post.newPwd'):"";
         $newPwdAga = input('?post.newPwdAga')?input('post.newPwdAga'):"";
@@ -93,15 +131,15 @@ class Center extends Base
             $data = ['upsd' => $newMd5];
             try
             {
-                $result = db("user")->where("upsd",$oldMd5)->where("usid",$uid)->update($data);
+                $result = db("user")->where("upsd",$oldMd5)->where("uname",$uname)->update($data);
                 if($result == 1)
                 {
-                    Session::delete('usid');//退出登录，删除session
+                    Session::delete('uname');//退出登录，删除session
                     return $this->reminder(10000,'Center','UpPwdSuccess');
                 }
                 else
                 {
-                    return $this->reminder(100012,'Center','UpPwdError');
+                    return $this->reminder(10002,'Center','UpPwdError');
                 }
             }
            catch(\Exception $e)
@@ -111,13 +149,13 @@ class Center extends Base
         }
         else
         {
-            return $this->reminder(100013,'Center','UpPwdError');
+            return $this->reminder(10003,'Center','UpPwdError');
         }
     }
     //修改用户基本信息
     public function upUserinfo()
     {
-        $uid = Session::has('usid')?Session::get('usid'):1;
+        $uname = Session::has('uname')?Session::get('uname'):'xd1234';//用户名
         $nickname = input('?post.nickname')?input('post.nickname'):"未设置";
         $usex = input('?post.usex')?input('post.usex'):"男";
         $region = input('?post.region')?input('post.region'):"未设置";
@@ -130,7 +168,7 @@ class Center extends Base
                 'region' => $region,
                 'uage' => $uage
             ];
-            $result = db("user")->where("usid",$uid)->update($data);
+            $result = db("user")->where("uname",$uname)->update($data);
             if($result == 1)
             {
                 return $this->reminder(10000,'Center','UpInfoSuccess');
@@ -148,28 +186,27 @@ class Center extends Base
 	/*获取用户信息*/
     public function getInfo()
     {
-        $uid = Session::has('usid')?Session::get('usid'):1;
+        $uname = Session::has('uname')?Session::get('uname'):'xd1234';//用户名
 
-        $arr = ['usid'=>$uid];
+        $arr = ['uname'=>$uname];
 
-        $userData = db('user')->where($arr)->find();
+        $data = db('user')->where($arr)->find();
 
-        return $userData;
+        return $data;
     }
     //获取用户的所有收货地址
     public function getAllSite()
     {
-        $uid = Session::has('usid')?Session::get('usid'):1;
+        $usid = Session::has('usid')?Session::get('usid'):'1';//用户名
         $addressData =  db('address')
             ->alias('a')
             ->join('pro b','a.provid = b.prid')
             ->join('city c','a.cityid = c.cid')
             ->join('area d','a.townid = d.tid')
-            ->where("userid",$uid)
+            ->where("a.userid",$usid)
             ->select();
         return $addressData;
     }
-
     //获取地址信息（省、市、县区）
     public function getSite()
     {
